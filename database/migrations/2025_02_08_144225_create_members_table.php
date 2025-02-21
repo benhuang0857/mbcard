@@ -18,7 +18,7 @@ class CreateMembersTable extends Migration
             $table->string('name');
             $table->string('account')->unique(); // card id: role + serial_number(to string)
             $table->string('password');
-            $table->integer('role_id');
+            $table->integer('role_id')->nullable();
             $table->string('mobile')->nullable();
             $table->string('email')->nullable();
             $table->string('avatar')->nullable();
