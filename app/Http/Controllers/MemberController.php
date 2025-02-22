@@ -57,14 +57,14 @@ class MemberController extends Controller
 
         // 查找該角色下的最大 account
         $latestMember = Member::where('role_id', $role->id)
-                            ->where('account', 'LIKE', $role->name . '%') // 確保 account 以 role_name 開頭
+                            ->where('account', 'LIKE', $role->slug . '%') // 確保 account 以 role_name 開頭
                             ->orderBy('account', 'desc')
                             ->first();
 
         // 取得最新的流水號
         if ($latestMember) {
             // 從 account 提取數字部分
-            $lastSerial = (int) substr($latestMember->account, strlen($role->name));
+            $lastSerial = (int) substr($latestMember->account, strlen($role->slug));
         } else {
             $lastSerial = 0;
         }
@@ -76,7 +76,7 @@ class MemberController extends Controller
         $formattedSerial = str_pad($newSerial, $role->length, '0', STR_PAD_LEFT);
 
         // 生成會員帳號
-        $account = $role->name . $formattedSerial;
+        $account = $role->slug . $formattedSerial;
 
         $avatarPath = $request->hasFile('avatar') ? $request->file('avatar')->store('uploads/avatars', 'public') : null;
         $bannerPath = $request->hasFile('banner') ? $request->file('banner')->store('uploads/banners', 'public') : null;
