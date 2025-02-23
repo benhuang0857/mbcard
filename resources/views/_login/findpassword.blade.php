@@ -25,22 +25,22 @@
     </header>
     <main class="row">
         <div class="col-md-6 align-self-center h-25 text-center">
-            <i class="bi bi-person-circle icon__large"></i>
+            <i class="bi bi-person-circle o-icon__large"></i>
         </div>
 
         <div id="forms" class="col-md-6 p-2 h-75">
-            <h3 class="form-label__main">更改密碼</h3>
+            <h3 class="o-form-label__main">更改密碼</h3>
             <form class="container">
                 <div class="row gy-md-5 gy-3 p-2">
                     <div class="col-12">
-                        <div class="row inputSubmit">
-                            <input type="text" id="account" class="col-10 inputSubmit__input" name="account" placeholder="輸入電子信箱" required>
-                            <button id="email-submit" type="submit" class="col-2 inputSubmit__btn">
+                        <div class="row o-inputSubmit">
+                            <input type="text" id="account" class="col-10 o-inputSubmit__input" name="account" placeholder="輸入電子信箱" required>
+                            <button id="email-submit" type="submit" class="col-2 o-inputSubmit__btn">
                                 <i class="bi bi-arrow-right"></i>
                             </button>
                         </div>
                     </div>
-                    <p class="col-12 text__alert p-0">信箱輸入錯誤</p>
+                    <p class="col-12 o-text__alert p-0">信箱輸入錯誤</p>
                 </div>
             </form>
             <p id="error-message" style="color: red; display: none;">Invalid credentials. Please try again.</p>

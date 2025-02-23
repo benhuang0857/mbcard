@@ -18,17 +18,17 @@
     </header>
     <main class="row">
         <div class="col-md-6 p-3 text-center">
-            <i class="bi bi-person-circle icon__large"></i>
+            <i class="bi bi-person-circle o-icon__large"></i>
         </div>
         <div class="col-md-6 p-2">
             <form id="login-form" class="container">
                 <div class="row gy-md-5 gy-3 pt-0 p-3">
                     <!-- <label for="account">Account:</label> -->
-                    <input type="text" id="account" class="col-12 input__main" name="account" placeholder="輸入帳號" required>
+                    <input type="text" id="account" class="col-12 o-input__main" name="account" placeholder="輸入帳號" required>
                     <!-- <label for="password">Password:</label> -->
-                    <input type="password" id="password" class="col-12 input__main" name="password" placeholder="輸入密碼" required>
-                    <h6 class="text__alert text-end"><a href="{{ asset('findpassword') }}">忘記密碼？</a></h6>
-                    <button type="submit" class="col-12 btn__submit">登入</button>
+                    <input type="password" id="password" class="col-12 o-input__main" name="password" placeholder="輸入密碼" required>
+                    <h6 class="o-text__alert text-end"><a href="{{ asset('findpassword') }}">忘記密碼？</a></h6>
+                    <button type="submit" class="col-12 o-btn__submit">登入</button>
                 </div>
             </form>
             <p id="error-message" style="color: red; display: none;">Invalid credentials. Please try again.</p>

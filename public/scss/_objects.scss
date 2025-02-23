@@ -1,12 +1,14 @@
 @use "_variables" as *;
 
-.icon {
+// login obs
+
+.o-icon {
     &__large {
         font-size: var(--spacing-64);
     }
 }
 
-.input {
+.o-input {
     &__main {
         padding: var(--spacing-4);
         border-radius: var(--spacing-8);
@@ -14,7 +16,7 @@
     }
 }
 
-.inputSubmit {
+.o-inputSubmit {
     border: solid 0.1rem $main-white;
     overflow: hidden;
     border-radius: var(--spacing-8);
@@ -33,7 +35,7 @@
     }
 }
 
-.btn {
+.o-btn {
     &__submit {
         background-color: $main-dark;
         border: var(--spacing-2) solid $main-white;
@@ -51,7 +53,7 @@
     }
 }
 
-.text {
+.o-text {
     &__notice{
         color: $main-white;
     }
@@ -60,7 +62,7 @@
     }
 }
 
-.form-label {
+.o-form-label {
     &__main {
         font-weight: 300;
         border: $main-gray 0.1rem solid;
@@ -69,4 +71,16 @@
         letter-spacing: var(--spacing-2);
         background-color: black;
     }
+}
+
+// member obs
+
+
+.o-title{
+    padding: var(--spacing-2) 0;
+    background-color: $main-dark;
+    border: var(--spacing-2) solid $main-white;
+    border-radius: var(--spacing-4);
+    color: $main-white;
+    font-size: var(--text-sm);
 }
