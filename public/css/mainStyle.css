@@ -1,0 +1,178 @@
+:root {
+  --spacing-160: 16rem;
+  --spacing-120: 12rem;
+  --spacing-100: 10rem;
+  --spacing-88: 8.8rem;
+  --spacing-80: 8rem;
+  --spacing-72: 7.2rem;
+  --spacing-64: 6.4rem;
+  --spacing-56: 5.6rem;
+  --spacing-48: 4.8rem;
+  --spacing-40: 4rem;
+  --spacing-32: 3.2rem;
+  --spacing-24: 2.4rem;
+  --spacing-16: 1.6rem;
+  --spacing-12: 1.2rem;
+  --spacing-8: 0.8rem;
+  --spacing-4: 0.4rem;
+  --spacing-2: 0.2rem;
+  --spacing-0: 0rem;
+  --spacing-auto: auto;
+  --section-spacing-x: 4vw;
+  --section-spacing-y: var(--spacing-120);
+  --container-width: 152rem;
+  --container-width-sm: 136rem;
+  --container-width-xs: 125.6rem;
+  --font-primary: "Noto Sans TC", sans-serif;
+  --font-en: "Patua One", serif;
+  --text-4xl: 4rem;
+  --text-3xl: 3.2rem;
+  --text-2xl: 2.8rem;
+  --text-xl: 2.4rem;
+  --text-lg: 2rem;
+  --text-md: 1.8rem;
+  --text-body: 1.6rem;
+  --text-sm: 1.4rem;
+  --text-xs: 1rem;
+  --text-xxs: 0.8rem;
+  --text-xxxs: 0.5rem;
+  --color-secondary: #FF986A;
+  --color-bg: white;
+  --color-success: var(--color-primary);
+  --color-danger: #E2907C;
+  --color-danger-rgb: 226, 144, 124;
+  --color-danger-20: rgba(var(--color-danger-rgb), 0.2);
+  --color-cocoa: #C7AF9E;
+  --color-cocoa-dark: #C0AC94;
+  --color-brown: #8E744D;
+  --color-brown-rgb: 142, 116, 77;
+  --color-brown-40: rgba(var(--color-brown-rgb), 0.4);
+  --color-brown-light: #E3D6C4;
+  --color-brown-light-rgb: 227, 214, 196;
+  --color-brown-light-60: rgba(var(--color-brown-light-rgb), 0.6);
+  --color-black: #000;
+  --color-black-rgb: 43, 43, 43;
+  --color-black-90: rgba(var(--color-black-rgb), 0.9);
+  --color-black-80: rgba(var(--color-black-rgb), 0.8);
+  --color-black-60: rgba(var(--color-black-rgb), 0.6);
+  --color-black-40: rgba(var(--color-black-rgb), 0.4);
+  --color-black-20: rgba(var(--color-black-rgb), 0.2);
+  --color-black-10: rgba(var(--color-black-rgb), 0.1);
+  --color-gray: #343434;
+  --color-gray-light: #F9F8F7;
+  --color-gray-light-rgb: 249, 248, 247;
+  --color-gray-light-40: rgba(var(--color-gray-light-rgb), 0.4);
+  --color-white: #fff;
+  --color-white-rgb: 255, 255, 255;
+  --color-white-80: rgba(var(--color-white-rgb), 0.8);
+  --color-white-60: rgba(var(--color-white-rgb), 0.6);
+  --color-white-40: rgba(var(--color-white-rgb), 0.4);
+  --color-transparent: transparent;
+}
+@media (max-width: 575.98px) {
+  :root {
+    --spacing-160: 30vw;
+  }
+}
+
+@media (max-width: 767.98px) {
+  :root {
+    --text-4xl: 3.6rem;
+  }
+}
+@media (max-width: 575.98px) {
+  :root {
+    --text-4xl: 3.2rem;
+    --text-3xl: 2.8rem;
+    --text-2xl: 2.2rem;
+    --text-xl: 2rem;
+    --text-lg: 1.8rem;
+    --text-md: 1.7rem;
+  }
+}
+@media (max-width: 767.98px) {
+  :root {
+    --section-spacing-x: 2vw;
+  }
+}
+.icon__large {
+  font-size: var(--spacing-64);
+}
+
+.input__main {
+  padding: var(--spacing-4);
+  border-radius: var(--spacing-8);
+  letter-spacing: var(--spacing-2);
+}
+
+.inputSubmit {
+  border: solid 0.1rem #fff;
+  overflow: hidden;
+  border-radius: var(--spacing-8);
+}
+.inputSubmit__input {
+  border: none;
+  padding: var(--spacing-4);
+  letter-spacing: var(--spacing-2);
+}
+.inputSubmit__btn {
+  border: none;
+  padding: var(--spacing-4);
+  letter-spacing: var(--spacing-2);
+  background-color: black;
+}
+
+.btn__submit {
+  background-color: #272727;
+  border: var(--spacing-2) solid #fff;
+  border-radius: var(--spacing-8);
+  color: #fff;
+  font-size: var(--text-sm);
+}
+.btn__security-submit {
+  background-color: black;
+  border: 0.1rem solid #fff;
+  border-radius: var(--spacing-4);
+  color: #fff;
+  font-size: var(--text-xs);
+}
+
+.text__notice {
+  color: #fff;
+}
+.text__alert {
+  color: #e24b00;
+}
+
+.form-label__main {
+  font-weight: 300;
+  border: #b1b1b1 0.1rem solid;
+  padding: var(--spacing-4);
+  border-radius: var(--spacing-8);
+  letter-spacing: var(--spacing-2);
+  background-color: black;
+}
+
+body {
+  background-color: #272727;
+  height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, i, label {
+  color: #fff;
+}
+
+header {
+  height: 10%;
+  background-color: #b1b1b1;
+}
+
+main {
+  height: 80%;
+}
+
+footer {
+  height: 10%;
+}
+
+/*# sourceMappingURL=mainStyle.css.map */

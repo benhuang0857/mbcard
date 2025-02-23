@@ -1,0 +1,24 @@
+@use "_variables" as *;
+@use "_objects" as *;
+
+body{
+    background-color: $main-dark;
+    height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, i, label {
+    color: $main-white;
+}
+
+header{
+    height: 10%;
+    background-color: $main-gray;
+}
+
+main{
+    height: 80%;
+}
+
+footer{
+    height: 10%;
+}

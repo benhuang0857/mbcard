@@ -1,0 +1,72 @@
+@use "_variables" as *;
+
+.icon {
+    &__large {
+        font-size: var(--spacing-64);
+    }
+}
+
+.input {
+    &__main {
+        padding: var(--spacing-4);
+        border-radius: var(--spacing-8);
+        letter-spacing: var(--spacing-2);
+    }
+}
+
+.inputSubmit {
+    border: solid 0.1rem $main-white;
+    overflow: hidden;
+    border-radius: var(--spacing-8);
+
+    &__input {
+        border: none;
+        padding: var(--spacing-4);
+        letter-spacing: var(--spacing-2);
+    }
+
+    &__btn {
+        border: none;
+        padding: var(--spacing-4);
+        letter-spacing: var(--spacing-2);
+        background-color: black;
+    }
+}
+
+.btn {
+    &__submit {
+        background-color: $main-dark;
+        border: var(--spacing-2) solid $main-white;
+        border-radius: var(--spacing-8);
+        color: $main-white;
+        font-size: var(--text-sm);
+    }
+
+    &__security-submit{
+        background-color: black;
+        border: 0.1rem solid $main-white;
+        border-radius: var(--spacing-4);
+        color: $main-white;
+        font-size: var(--text-xs);
+    }
+}
+
+.text {
+    &__notice{
+        color: $main-white;
+    }
+    &__alert{
+        color: $main-topic;
+    }
+}
+
+.form-label {
+    &__main {
+        font-weight: 300;
+        border: $main-gray 0.1rem solid;
+        padding: var(--spacing-4);
+        border-radius: var(--spacing-8);
+        letter-spacing: var(--spacing-2);
+        background-color: black;
+    }
+}
