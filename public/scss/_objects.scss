@@ -44,7 +44,7 @@
         font-size: var(--text-sm);
     }
 
-    &__security-submit{
+    &__security-submit {
         background-color: black;
         border: 0.1rem solid $main-white;
         border-radius: var(--spacing-4);
@@ -54,10 +54,11 @@
 }
 
 .o-text {
-    &__notice{
+    &__notice {
         color: $main-white;
     }
-    &__alert{
+
+    &__alert {
         color: $main-topic;
     }
 }
@@ -75,12 +76,16 @@
 
 // member obs
 
+.o-socialBtn {
+    font-size: var(--text-xl);
+}
 
-.o-title{
+.o-title {
     padding: var(--spacing-2) 0;
     background-color: $main-dark;
     border: var(--spacing-2) solid $main-white;
     border-radius: var(--spacing-4);
     color: $main-white;
     font-size: var(--text-sm);
+    z-index: 2;
 }

@@ -31,15 +31,51 @@
         <!-- name -->
         <section class="container">
             <div class="row">
-                <div class="col-12 p-5">
+                <div class="col-12 p-5 pt-3 pb-3">
                     <h1 id="member-name" class="text-center o-title"></h1>
                 </div>
             </div>
         </section>
         <!-- social icon -->
         <section class="container">
-            <div class="row">
-                <i class="col-2 bi bi-plus-circle-dotted"></i>
+            <div class="row justify-content-center">
+                <a href="https://google.com" target="_blank" class="col-2 text-center"><i class="bi bi-plus-circle-dotted text-center o-socialBtn"></i></a>
+            </div>
+        </section>
+        <!-- description -->
+        <section class="container">
+            <div class="row p-2">
+                <div class="col-12 p-5 pt-3 pb-0">
+                    <h2 class="text-center o-title">自我介紹</h2>
+                </div>
+                <div class="col-12 c-content">
+                    <p id="member-description" class="c-content__text"></p>
+                </div>
+            </div>
+        </section>
+        <!-- description -->
+        <section class="container">
+            <div class="row p-2">
+                <div class="col-12 p-5 pt-3 pb-0">
+                    <h2 class="text-center o-title">聯絡資訊</h2>
+                </div>
+                <div class="col-12 c-content">
+                    <p id="member-email" class="c-content__text"></p>
+                    <p id="member-address" class="c-content__text"></p>
+                    <p id="member-phone" class="c-content__text"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- company -->
+        <section class="container">
+            <div class="row p-2">
+                <div class="col-12 p-5 pt-3 pb-0">
+                    <h2 class="text-center o-title">營運公司</h2>
+                </div>
+                <div class="col-12 c-content">
+                    <ul id="companies-list"></ul>
+                </div>
             </div>
         </section>
     </main>
