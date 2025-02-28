@@ -34,6 +34,8 @@
             <p id="error-message" style="color: red; display: none;">Invalid credentials. Please try again.</p>
         </div>
     </main>
+    <footer>
+    </footer>
     <!-- login js -->
     <script src="{{ asset('js/login.js') }}"></script>
 </body>

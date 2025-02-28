@@ -80,6 +80,7 @@
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
+                    <a href="{{asset('login')}}">to login</a>
                 </div>
 
                 <div class="links">

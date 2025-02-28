@@ -89,3 +89,10 @@
     font-size: var(--text-sm);
     z-index: 2;
 }
+
+.o-return{
+  position: absolute;
+  left: var(--spacing-4);
+  top: var(--spacing-4);  
+  font-size: var(--text-xl);
+}

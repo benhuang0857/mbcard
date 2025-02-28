@@ -28,7 +28,8 @@ const loadAdmin = () => {
             window.location.href = '/admin/member';
 
         } catch (error) {
-            document.getElementById('error-message').style.display = 'block';
+            const footer = document.querySelector('footer');
+                footer.innerHTML += `<p style="color: red;">Failed to load member data.</p>`
         }
     });
 }
