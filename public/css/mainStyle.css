@@ -156,6 +156,16 @@
 .o-socialBtn {
   font-size: var(--text-xl);
 }
+.o-socialBtn__dark {
+  color: #272727;
+}
+.o-socialBtn__gray {
+  color: #b1b1b1;
+}
+
+.o-addCompanyBtn {
+  font-size: var(--text-3xl);
+}
 
 .o-title {
   padding: var(--spacing-2) 0;
@@ -235,7 +245,6 @@
   background-color: #272727;
 }
 .c-edit__content {
-  z-index: -1;
   background-color: #b1b1b1;
   padding: var(--spacing-24);
   border-radius: var(--spacing-8);
@@ -285,7 +294,6 @@
   color: #272727;
 }
 .c-edit__contentEdit {
-  z-index: -1;
   background-color: #fff;
   padding: var(--spacing-2);
   border-radius: var(--spacing-4);
@@ -300,7 +308,6 @@
   min-height: var(--spacing-64);
 }
 .c-edit__contactEdit {
-  z-index: -1;
   background-color: #fff;
   padding: var(--spacing-2);
   border-radius: var(--spacing-4);

@@ -83,7 +83,6 @@
     }
 
     &__content {
-        z-index: -1;
         background-color: $main-gray;
         padding: var(--spacing-24);
         border-radius: var(--spacing-8);
@@ -143,7 +142,6 @@
     }
 
     &__contentEdit {
-        z-index: -1;
         background-color: $main-white;
         padding: var(--spacing-2);
         border-radius: var(--spacing-4);
@@ -160,7 +158,6 @@
     }
 
     &__contactEdit {
-        z-index: -1;
         background-color: $main-white;
         padding: var(--spacing-2);
         border-radius: var(--spacing-4);

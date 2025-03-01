@@ -10,7 +10,7 @@ $(document).ready(function () {
             $('#member-name').text(response.name);
             $('#member-account').text(response.account);
             $('#member-email').text(response.email || 'N/A');
-            $('#member-phone').text(response.mobile || 'N/A');
+            $('#member-mobile').text(response.mobile || 'N/A');
             $('#member-address').text(response.address || 'N/A');
             $('#member-description').text(response.description || 'N/A');
             if (response.avatar) {

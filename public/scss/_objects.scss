@@ -78,6 +78,16 @@
 
 .o-socialBtn {
     font-size: var(--text-xl);
+    &__dark{
+        color: $main-dark;
+    }
+    &__gray{
+        color: $main-gray;
+    }
+}
+
+.o-addCompanyBtn{
+    font-size: var(--text-3xl);
 }
 
 .o-title {

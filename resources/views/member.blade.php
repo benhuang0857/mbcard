@@ -21,11 +21,11 @@
 <body>
     <header class="c-header__member container">
         <div class="row">
-            <div id="heroBanner" class="col-12 c-hero__banner" data-banner="{{asset('media/banner/default-banner.jpg')}}">
+            <div id="member-banner" class="col-12 c-hero__banner">
                 <span class="c-edit__smallPen"><i class="bi bi-pencil text-center"></i></span>
             </div>
             <div class="col-12 c-hero__portrait">
-                <div id="portriat" class="c-hero__portrait__img" data-portriat="{{ asset('media/portrait/test-portrait.png') }}"></div>
+                <div id="member-avatar" class="c-hero__portrait__img"></div>
             </div>
         </div>
     </header>
@@ -67,7 +67,7 @@
                 <div class="col-12 p-5 pt-3 pb-0">
                     <div class="c-edit">
                         <h2 class="c-edit__title text-center o-title">聯絡資訊</h2>
-                        <span class="c-edit__pen" onclick="editTrigger_contact(event)"><i class="bi bi-toggle-off text-center"></i></span>
+                        <span class="c-edit__pen" onclick="editTrigger_contact()"><i class="bi bi-toggle-off text-center"></i></span>
                     </div>
                 </div>
                 <div class="col-12 c-edit__content">
@@ -81,24 +81,40 @@
                     </div>
                     <div class="row">
                         <i class="col-1 bi bi-telephone text-black"></i>
-                        <p id="member-phone" class="col-11 c-edit__content__text"></p>
+                        <p id="member-mobile" class="col-11 c-edit__content__text"></p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- company -->
-        <section class="container">
-            <div class="row p-2">
-                <div class="c-edit">
-                    <h2 class="c-edit__title text-center o-title">營運公司</h2>
-                    <span class="c-edit__pen"><i class="bi bi-pencil text-center"></i></span>
+        <div id="companies-list">
+            <section id="company-1-section" class="container">
+                <div class="row p-2">
+                    <div class="col-12 p-5 pt-3 pb-0">
+                        <div class="c-edit">
+                            <h2 class="c-edit__title text-center o-title">營運公司(name)</h2>
+                            <span class="c-edit__pen"><i class="bi bi-toggle-off text-center"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-12 c-edit__content">
+                        <p class="c-edit__content__text"></p>
+                        <hr>
+                        <div class="row justify-content-center">
+                            <div class="col-2 text-center">
+                                <i class="bi bi-facebook o-socialBtn"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-12 c-content">
-                    <ul id="companies-list"></ul>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
+
+        <!-- add company -->
+        <div id="add-company-section" class="p-3 w-100 d-flex flex-column align-items-center justify-content-center">
+            <h2 class="o-title text-center w-75">新增店家</h2>
+            <i class="bi bi-plus-circle-dotted text-center o-addCompanyBtn"></i>
+        </div>
     </main>
     <footer>
         <i class="bi bi-gear-fill c-setting" onclick="editFin()"></i>
