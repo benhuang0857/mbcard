@@ -22,4 +22,16 @@ class Member extends Model
     {
         return $this->hasMany('App\Company', 'uid', 'id');
     }
+
+    // 會員收藏的對象
+    public function favorites()
+    {
+        return $this->belongsToMany(Member::class, 'member_favorites', 'member_id', 'favorite_member_id');
+    }
+
+    // 收藏了該會員的人
+    public function favoritedBy()
+    {
+        return $this->belongsToMany(Member::class, 'member_favorites', 'favorite_member_id', 'member_id');
+    }
 }

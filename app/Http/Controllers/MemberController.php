@@ -257,4 +257,34 @@ class MemberController extends Controller
         $member->delete();
         return response()->json(['message' => 'Member deleted successfully']);
     }
+
+    public function favorite(Request $request, $account)
+    {
+        $token = $request->bearerToken();
+        $me = Member::where('remember_token', $token)->first();
+        $member = Member::where('account', $account)->first();
+        
+        if ($me->id !== $member->id) {
+            $me->favorites()->syncWithoutDetaching([$member->id]); // 避免重複收藏
+        }
+        return response()->json(['message' => '收藏成功']);
+    }
+
+    public function unfavorite(Request $request, $account)
+    {
+        $token = $request->bearerToken();
+        $me = Member::where('remember_token', $token)->first();
+        $member = Member::where('account', $account)->first();
+
+        $me->favorites()->detach($member->id);
+        return response()->json(['message' => '取消收藏成功']);
+    }
+
+    public function getFavorites(Request $request)
+    {
+        $token = $request->bearerToken();
+        $me = Member::where('remember_token', $token)->first();
+        return response()->json($me->favorites);
+    }
+
 }
