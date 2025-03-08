@@ -118,36 +118,6 @@
                 <p>施工中，敬請期待</p>
             </div>
         </section>
-
-        <!-- banner temp -->
-        <section class="container">
-            <form class="row p-2 animate__animated animate__fadeIn">
-                <div class="col-12 p-5 pt-3 pb-0">
-                    <div class="c-edit">
-                        <h2 class="c-edit__titleEdit text-center o-title">更新Banner</h2>
-                        <span class="c-edit__penEdit"><i class="bi bi-pencil text-center"></i></span>
-                    </div>
-                </div>
-                <div class="col-12 c-edit__contentEdit pt-5 p-3">
-                    <input type="file" name="" id="input-banner">
-                </div>
-            </form>
-        </section>
-
-        <!-- avatar temp -->
-        <section class="container">
-            <form class="row p-2 animate__animated animate__fadeIn">
-                <div class="col-12 p-5 pt-3 pb-0">
-                    <div class="c-edit">
-                        <h2 class="c-edit__titleEdit text-center o-title">更新Avatar</h2>
-                        <span class="c-edit__penEdit"><i class="bi bi-pencil text-center"></i></span>
-                    </div>
-                </div>
-                <div class="col-12 c-edit__contentEdit pt-5 p-3">
-                    <input type="file" name="" id="input-banner">
-                </div>
-            </form>
-        </section>
     </main>
     <footer>
         <div class="d-flex flex-column c-setting">
