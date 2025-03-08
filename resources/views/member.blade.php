@@ -22,7 +22,7 @@
     <header class="c-header__member container">
         <div class="row">
             <div id="member-banner" class="col-12 c-hero__banner">
-                <span class="c-edit__smallPen"><i class="bi bi-pencil text-center"></i></span>
+                <span id="avatar-button" class="c-edit__smallPen"  onclick="editTrigger_avatar()" data-status="hide"><i class="bi bi-pencil text-center"></i></span>
             </div>
             <div class="col-12 c-hero__portrait">
                 <div id="member-avatar" class="c-hero__portrait__img"></div>
@@ -36,7 +36,7 @@
                 <div class="col-12">
                     <div class="c-edit animate__animated animate__fadeIn">
                         <h1 id="member-name" class="c-edit__title text-center"></h1>
-                        <span class="c-edit__pen" onclick="editTrigger_name('name')"><i class="bi bi-toggle-off text-center"></i></span>
+                        <span class="c-edit__pen" onclick="editTrigger('name')"><i class="bi bi-pencil text-center"></i></span>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                 <div class="col-12 p-5 pt-3 pb-0">
                     <div class="c-edit">
                         <h2 class="c-edit__title text-center o-title">自我介紹</h2>
-                        <span class="c-edit__pen" onclick="editTrigger_text('description')"><i class="bi bi-toggle-off text-center"></i></span>
+                        <span class="c-edit__pen" onclick="editTrigger_text('description')"><i class="bi bi-pencil text-center"></i></span>
                     </div>
                 </div>
                 <div class="col-12 c-edit__content">
@@ -67,7 +67,7 @@
                 <div class="col-12 p-5 pt-3 pb-0">
                     <div class="c-edit">
                         <h2 class="c-edit__title text-center o-title">聯絡資訊</h2>
-                        <span class="c-edit__pen" onclick="editTrigger_contact()"><i class="bi bi-toggle-off text-center"></i></span>
+                        <span class="c-edit__pen" onclick="editTrigger_contact()"><i class="bi bi-pencil text-center"></i></span>
                     </div>
                 </div>
                 <div class="col-12 c-edit__content">
@@ -94,7 +94,7 @@
                     <div class="col-12 p-5 pt-3 pb-0">
                         <div class="c-edit">
                             <h2 class="c-edit__title text-center o-title">營運公司(name)</h2>
-                            <span class="c-edit__pen"><i class="bi bi-toggle-off text-center"></i></span>
+                            <span class="c-edit__pen"><i class="bi bi-pencil text-center"></i></span>
                         </div>
                     </div>
                     <div class="col-12 c-edit__content">
@@ -110,41 +110,52 @@
             </section>
         </div>
 
-        <!-- add company -->
-        <div id="add-company-section" class="p-3 w-100 d-flex flex-column align-items-center justify-content-center">
-            <h2 class="o-title text-center w-75">新增店家</h2>
-            <i class="bi bi-plus-circle-dotted text-center o-addCompanyBtn"></i>
-        </div>
+        <!-- add company temp (something went wrong in fetch post function) -->
+        <section>
+            <div id="add-company-section" class="p-3 w-100 d-flex flex-column align-items-center justify-content-center">
+                <h2 class="o-title text-center w-75">新增店家</h2>
+                <i class="bi bi-plus-circle-dotted text-center o-addCompanyBtn"></i>
+                <p>施工中，敬請期待</p>
+            </div>
+        </section>
+
+        <!-- banner temp -->
+        <section class="container">
+            <form class="row p-2 animate__animated animate__fadeIn">
+                <div class="col-12 p-5 pt-3 pb-0">
+                    <div class="c-edit">
+                        <h2 class="c-edit__titleEdit text-center o-title">更新Banner</h2>
+                        <span class="c-edit__penEdit"><i class="bi bi-pencil text-center"></i></span>
+                    </div>
+                </div>
+                <div class="col-12 c-edit__contentEdit pt-5 p-3">
+                    <input type="file" name="" id="input-banner">
+                </div>
+            </form>
+        </section>
+
+        <!-- avatar temp -->
+        <section class="container">
+            <form class="row p-2 animate__animated animate__fadeIn">
+                <div class="col-12 p-5 pt-3 pb-0">
+                    <div class="c-edit">
+                        <h2 class="c-edit__titleEdit text-center o-title">更新Avatar</h2>
+                        <span class="c-edit__penEdit"><i class="bi bi-pencil text-center"></i></span>
+                    </div>
+                </div>
+                <div class="col-12 c-edit__contentEdit pt-5 p-3">
+                    <input type="file" name="" id="input-banner">
+                </div>
+            </form>
+        </section>
     </main>
     <footer>
-        <i class="bi bi-gear-fill c-setting" onclick="editFin()"></i>
+        <div class="d-flex flex-column c-setting">
+            <i id="bgColor-button" class="bi bi-palette" onclick="editTrigger_bgColor()" data-status="hide"></i>
+            <i class="bi bi-gear-fill" onclick="editFin()"></i>
+        </div>
     </footer>
     <script src="{{ asset('js/member.js') }}"></script>
 </body>
 
 </html>
-
-
-<!-- old code -->
-<!-- 
-<h2>Member Profile</h2>
-<button id="logout">Logout</button>
-<div id="member-info">
-    <p><strong>Name:</strong> <span id="member-name"></span></p>
-    <p><strong>Account:</strong> <span id="member-account"></span></p>
-    <p><strong>Email:</strong> <span id="member-email"></span></p>
-    <p><strong>Phone:</strong> <span id="member-phone"></span></p>
-    <p><strong>Address:</strong> <span id="member-address"></span></p>
-    <p><strong>Description:</strong> <span id="member-description"></span></p>
-    <img id="member-avatar" src="" alt="Avatar" style="max-width: 150px; display: none;">
-
-    <h3>Portfolio</h3>
-    <div id="portfolio-info">
-        <p><strong>Background Color:</strong> <span id="portfolio-bg"></span></p>
-        <p><strong>Video:</strong> <a id="portfolio-video" href="#" target="_blank" style="display: none;">View Video</a></p>
-        <p><strong>Voice:</strong> <a id="portfolio-voice" href="#" target="_blank" style="display: none;">Listen</a></p>
-    </div>
-
-    <h3>Companies</h3>
-    <ul id="companies-list"></ul>
-</div> -->

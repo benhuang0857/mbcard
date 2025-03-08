@@ -2,7 +2,7 @@
 
 .c-header {
     &__member {
-        background-color: $main-dark;
+        background-color: #ffffff00;
         height: auto;
     }
 }
@@ -33,18 +33,6 @@
         }
     }
 }
-
-// .c-content {
-//     z-index: -1;
-//     background-color: $main-gray;
-//     padding: var(--spacing-24);
-//     border-radius: var(--spacing-8);
-//     margin-top: calc(-1 * var(--spacing-16));
-
-//     &__text {
-//         color: $main-dark;
-//     }
-// }
 
 .c-edit {
     display: flex;
@@ -168,7 +156,7 @@
             margin-top: var(--spacing-16);
             justify-content: center;
             align-items: center;
-            
+
             input {
                 border: var(--spacing-2) solid $main-dark;
                 border-radius: var(--spacing-16);
@@ -205,13 +193,25 @@
     }
 }
 
-
-
 .c-setting {
     position: fixed;
     bottom: var(--spacing-16);
     right: var(--spacing-16);
     font-size: var(--text-xl);
+}
+
+.c-bg {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: $trans-gray;
+    top: 0;
+    left: 0;
+    font-size: var(--text-xl);
+    z-index: 5;
+    .colorpick-eyedropper-input-trigger{
+        display: none;
+    }
 }
 
 // input
