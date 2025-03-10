@@ -32,4 +32,19 @@ class MemberAuthController extends Controller
 
         return response()->json(['message' => 'Login successful', 'token' => $token, 'member' => $member]);
     }
+
+    /**
+     * Handle member logout.
+     */
+    public function logout(Request $request)
+    {
+        $token = $request->bearerToken();
+        $member = Member::where('remember_token', $token)->first();
+
+        // Generate a simple API token (for demonstration purposes)
+        $member->remember_token = null;
+        $member->save();
+
+        return response()->json(['message' => 'Logout successful']);
+    }
 }

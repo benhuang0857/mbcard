@@ -8,7 +8,19 @@ class Company extends Model
 {
     protected $table = "companies";
 
-    protected $fillable = ['uid', 'bg_color', 'video', 'voice', 'facebook', 'instagram', 'linkedin', 'line'];
+    protected $fillable = [
+        'uid',
+        'name',
+        'bg_color', 
+        'video', 
+        'voice', 
+        'facebook', 
+        'instagram', 
+        'linkedin', 
+        'line',
+        'description',
+        'status'
+    ];
 
     public function member()
     {

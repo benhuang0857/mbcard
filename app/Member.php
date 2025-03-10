@@ -8,10 +8,7 @@ class Member extends Model
 {
     protected $table = 'members';
 
-    protected $fillable = [
-        'name', 'account', 'password', 'mobile', 'email',
-        'avatar', 'banner', 'birth_day', 'address', 'description', 'status'
-    ];
+    protected $guarded = [];
 
     public function portfolio()
     {

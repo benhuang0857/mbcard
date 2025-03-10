@@ -18,7 +18,7 @@ class MemberController extends Controller
             ->where('remember_token', $token)->first();
 
         if (!$member) {
-            return response()->json(['message' => 'Unauthorized'], 401);
+            return response()->json(['message' => '會員不存在'], 401);
         }
 
         return response()->json($member);
@@ -44,8 +44,8 @@ class MemberController extends Controller
             'role_id' => 'required|integer',
             'mobile' => 'nullable|string|max:255',
             'email' => 'nullable|string|email|max:255',
-            'avatar' => 'nullable|string|max:255',
-            'banner' => 'nullable|string|max:255',
+            'avatar' => 'nullable|mimes:jpg,jpeg,png|max:6144', // 允許 jpg, jpeg, png，最大 6MB
+            'banner' => 'nullable|mimes:jpg,jpeg,png|max:6144', // 允許 jpg, jpeg, png，最大 6MB
             'birth_day' => 'nullable|date',
             'address' => 'nullable|string|max:255',
             'description' => 'nullable|string',
@@ -113,6 +113,7 @@ class MemberController extends Controller
                 $company = $member->companies()->updateOrCreate(
                     ['uid' => $member->account, 'id' => $companyData['id'] ?? null],
                     [
+                        'name' => $companyData['name'],
                         'video' => $companyData['video'] ?? null,
                         'voice' => $companyData['voice'] ?? null,
                         'facebook' => $companyData['facebook'] ?? null,
@@ -142,10 +143,12 @@ class MemberController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $account)
+    public function update(Request $request)
     {
         // 查找會員
-        $member = Member::where('account', $account)->first();
+        $token = $request->bearerToken();
+        $member = Member::with(['portfolio', 'companies'])
+            ->where('remember_token', $token)->first();
     
         if (!$member) {
             return response()->json(['error' => '會員不存在'], 404);
@@ -153,38 +156,17 @@ class MemberController extends Controller
     
         // 驗證請求
         $request->validate([
-            'name' => 'sometimes|string|max:255',
-            'account' => 'sometimes|string|unique:members,account,' . $member->id . '|max:255',
-            'password' => 'sometimes|string|min:6',
-            'role_id' => 'sometimes|integer|exists:roles,id',
+            'name' => 'required|string|max:255',
+            'password' => 'nullable|string|min:6',
             'mobile' => 'nullable|string|max:255',
             'email' => 'nullable|string|email|max:255',
-            'avatar' => 'nullable|image|max:2048',
-            'banner' => 'nullable|image|max:2048',
+            'avatar' => 'nullable|mimes:jpg,jpeg,png|max:6144', // 允許 jpg, jpeg, png，最大 6MB
+            'banner' => 'nullable|mimes:jpg,jpeg,png|max:6144', // 允許 jpg, jpeg, png，最大 6MB
             'birth_day' => 'nullable|date',
             'address' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'status' => 'boolean',
         ]);
-    
-        // 如果角色變更，需要更新 `account`
-        if ($request->has('role_id') && $request->role_id != $member->role_id) {
-            $newRole = Role::findOrFail($request->role_id);
-    
-            // 找到該角色下的最大流水號
-            $latestMember = Member::where('role_id', $newRole->id)
-                ->where('account', 'LIKE', $newRole->name . '%')
-                ->orderBy('account', 'desc')
-                ->first();
-    
-            $lastSerial = $latestMember ? (int) substr($latestMember->account, strlen($newRole->name)) : 0;
-            $newSerial = $lastSerial + 1;
-            $formattedSerial = str_pad($newSerial, $newRole->length, '0', STR_PAD_LEFT);
-            $newAccount = $newRole->name . $formattedSerial;
-    
-            $member->account = $newAccount;
-            $member->role_id = $newRole->id;
-        }
     
         // 更新密碼（如果有）
         if ($request->has('password')) {
@@ -232,6 +214,7 @@ class MemberController extends Controller
                 $member->companies()->updateOrCreate(
                     ['uid' => $member->account, 'id' => $companyData['id'] ?? null],
                     [
+                        'name' => $companyData['name'],
                         'video' => $companyData['video'] ?? null,
                         'voice' => $companyData['voice'] ?? null,
                         'facebook' => $companyData['facebook'] ?? null,
@@ -280,11 +263,11 @@ class MemberController extends Controller
         return response()->json(['message' => '取消收藏成功']);
     }
 
-    public function getFavorites(Request $request)
+    public function getFavorites(Request $request, $account)
     {
         $token = $request->bearerToken();
-        $me = Member::where('remember_token', $token)->first();
-        return response()->json($me->favorites);
+        $member = Member::where('account', $account)->first();
+        return response()->json($member->favorites);
     }
 
 }

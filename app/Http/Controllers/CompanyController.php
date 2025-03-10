@@ -23,6 +23,7 @@ class CompanyController extends Controller
     {
         $request->validate([
             'uid' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'video' => 'nullable|string|max:255',
             'voice' => 'nullable|string|max:255',
             'facebook' => 'nullable|string|max:255',
@@ -35,6 +36,7 @@ class CompanyController extends Controller
 
         $company = Company::create([
             'uid' => $request->uid,
+            'name' => $request->name,
             'video' => $request->video,
             'voice' => $request->voice,
             'facebook' => $request->facebook,
@@ -66,6 +68,7 @@ class CompanyController extends Controller
 
         $request->validate([
             'uid' => 'sometimes|string|max:255',
+            'name' => 'required|string|max:255',
             'video' => 'nullable|string|max:255',
             'voice' => 'nullable|string|max:255',
             'facebook' => 'nullable|string|max:255',
