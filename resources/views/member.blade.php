@@ -109,15 +109,6 @@
                 </div>
             </section>
         </div>
-
-        <!-- add company temp (something went wrong in fetch post function) -->
-        <section>
-            <div id="add-company-section" class="p-3 w-100 d-flex flex-column align-items-center justify-content-center">
-                <h2 class="o-title text-center w-75">新增店家</h2>
-                <i class="bi bi-plus-circle-dotted text-center o-addCompanyBtn"></i>
-                <p>施工中，敬請期待</p>
-            </div>
-        </section>
     </main>
     <footer>
         <div class="d-flex flex-column c-setting">

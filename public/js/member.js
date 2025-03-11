@@ -523,6 +523,48 @@ const editTrigger_company = (companyId, companyName) => {
     }
 };
 
+// new company edit trigger
+const editTrigger_newCompany = (userId) => {
+    const target = document.getElementById("add-company-section");
+    const status = target.dataset.status;
+
+    if (status === "show") {
+        target.innerHTML = `
+            <form class="row p-2">
+                <div class="col-12 p-5 pt-3 pb-0">
+                    <div class="c-edit">
+                        <h2 class="c-edit__titleEdit text-center o-title">新公司</h2>
+                        <span class="c-edit__penEdit" onclick="editTrigger_newCompany('${userId}')"><i class="bi bi-pencil text-center"></i></span>
+                    </div>
+                </div>
+                <div class="col-12 c-edit__contentEdit">
+                    <textarea id="input-newCompany-description" class="c-edit__contentEdit__text"></textarea>
+                </div>
+            </form>
+        `;
+        target.dataset.status = "edit";
+    } else if (status === "edit") {
+        const newDescription = document.getElementById("input-newCompany-description").value.trim();
+        if (newDescription) {
+            fetch("/api/companies/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ uid: userId, description: newDescription })
+            })
+                .then(response => response.json())
+                .then(() => {
+                    // initCompanies();
+                    window.location.reload();
+                    // target.dataset.status = "show";
+                })
+                .catch(error => console.error("Error creating new company:", error));
+        }
+    }
+
+}
+
 const fetchCompanyData = (companyId) => {
     return fetch(`/api/companies/${companyId}/`)
         .then(response => response.json())
@@ -589,7 +631,7 @@ const updateCompanyValue = (companyId) => {
             </div>
         </div>
         `;
-        console.log("Updated Company Response:", updatedCompany);
+            console.log("Updated Company Response:", updatedCompany);
             target.dataset.status = "show";
         })
         .catch(error => console.error("Error updating company:", error));
@@ -619,7 +661,19 @@ const initMember = () => {
 };
 
 const initCompanies = () => {
-    fetchUserData().then(data => fetchCompanies(data.account).then(displayCompanies));
+    fetchUserData().then(data => {
+        fetchCompanies(data.account).then(displayCompanies).then(() => {
+            const target = document.querySelector("main");
+            target.innerHTML += `
+            <section id="add-company-section" class="container" data-status="show">
+                <div class="p-3 w-100 d-flex flex-column align-items-center justify-content-center">
+                    <h2 class="o-title text-center w-75">新增店家</h2>
+                    <i id="new-company" class="bi bi-plus-circle-dotted text-center o-addCompanyBtn" onclick="editTrigger_newCompany('${data.account}')" ></i>
+                </div>
+            </section>
+            `;
+        });
+    });
 };
 
 const initPortfolio = () => {
