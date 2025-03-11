@@ -46,7 +46,8 @@ class DatabaseSeeder extends Seeder
             // 為該會員建立 2 個 Company
             for ($j = 0; $j < 2; $j++) {
                 Company::create([
-                    'uid' => $member->account,
+                    'uid' => $member->id,
+                    'name' => 'Company-' . $j,
                     'video' => null,
                     'voice' => null,
                     'facebook' => null,

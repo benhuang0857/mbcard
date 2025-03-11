@@ -18,13 +18,19 @@ use Illuminate\Http\Request;
 // });
 
 Route::post('login', 'MemberAuthController@login');
+Route::post('logout', 'MemberAuthController@logout');
 
 Route::get('me', 'MemberController@me');
+Route::post('me', 'MemberController@update');
+
 Route::get('members', 'MemberController@index');
 Route::post('members', 'MemberController@store');
 Route::get('members/{account}', 'MemberController@show');
-Route::put('members/{account}', 'MemberController@update');
 Route::delete('members/{account}', 'MemberController@destroy');
+
+Route::get('/members/{account}/favorite', 'MemberController@getFavorites');
+Route::post('/members/{account}/favorite', 'MemberController@favorite');
+Route::delete('/members/{account}/favorite', 'MemberController@unfavorite');
 
 Route::get('roles', 'RoleController@index');
 Route::post('roles', 'RoleController@store');

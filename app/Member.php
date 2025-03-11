@@ -8,10 +8,7 @@ class Member extends Model
 {
     protected $table = 'members';
 
-    protected $fillable = [
-        'name', 'account', 'password', 'mobile', 'email',
-        'avatar', 'banner', 'birth_day', 'address', 'description', 'status'
-    ];
+    protected $guarded = [];
 
     public function portfolio()
     {
@@ -21,5 +18,17 @@ class Member extends Model
     public function companies()
     {
         return $this->hasMany('App\Company', 'uid', 'id');
+    }
+
+    // 會員收藏的對象
+    public function favorites()
+    {
+        return $this->belongsToMany(Member::class, 'member_favorites', 'member_id', 'favorite_member_id');
+    }
+
+    // 收藏了該會員的人
+    public function favoritedBy()
+    {
+        return $this->belongsToMany(Member::class, 'member_favorites', 'favorite_member_id', 'member_id');
     }
 }
