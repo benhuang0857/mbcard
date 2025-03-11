@@ -259,6 +259,28 @@ const displayCompanies = (userCompanies) => {
 const displayPortfolio = (userPortfolio) => {
     if (userPortfolio.length > 0) {
         document.body.style.backgroundColor = userPortfolio[0].bg_color;
+        const portfolioSocial = document.getElementById("portfolio-social-section");
+        const socialPlatforms = [
+            { key: "facebook", icon: "bi-facebook" },
+            { key: "instagram", icon: "bi-instagram" },
+            { key: "linkedin", icon: "bi-linkedin" },
+            { key: "line", icon: "bi-line" }
+        ];
+
+        const socialLinks = socialPlatforms.map(platform => {
+            if (userPortfolio[0][platform.key]) {
+                return `<a href='${userPortfolio[0][platform.key]}' target="_blank" class="col-2 text-center"><i class="bi ${platform.icon} text-center o-socialBtn"></i></a>`;
+            }
+            return '';
+        }).join('');
+
+        portfolioSocial.innerHTML = `
+        <div class="row justify-content-center">
+            ${socialLinks}
+            <a href="https://google.com" target="_blank" class="col-2 text-center"><i class="bi bi-plus-circle-dotted text-center o-socialBtn"></i></a>
+        </div>
+        `;
+        console.log(userPortfolio);
     } else {
         console.warn("No portfolio found for this user.");
     }

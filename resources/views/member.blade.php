@@ -42,10 +42,7 @@
             </div>
         </section>
         <!-- social icon -->
-        <section class="container">
-            <div class="row justify-content-center">
-                <a href="https://google.com" target="_blank" class="col-2 text-center"><i class="bi bi-plus-circle-dotted text-center o-socialBtn"></i></a>
-            </div>
+        <section id="portfolio-social-section" class="container">
         </section>
         <!-- description -->
         <section id="description-section" class="container" data-status="show">
