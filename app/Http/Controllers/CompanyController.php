@@ -67,7 +67,7 @@ class CompanyController extends Controller
         $company = Company::findOrFail($id);
 
         $request->validate([
-            'uid' => 'sometimes|string|max:255',
+            'uid' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'video' => 'nullable|string|max:255',
             'voice' => 'nullable|string|max:255',

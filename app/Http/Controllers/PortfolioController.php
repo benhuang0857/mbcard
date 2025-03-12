@@ -54,7 +54,7 @@ class PortfolioController extends Controller
         $portfolio = Portfolio::findOrFail($id);
 
         $request->validate([
-            'uid' => 'sometimes|string|max:255',
+            'uid' => 'required|string|max:255',
             'bg_color' => 'nullable|string|max:255',
             'video' => 'nullable|string|max:255',
             'voice' => 'nullable|string|max:255',
