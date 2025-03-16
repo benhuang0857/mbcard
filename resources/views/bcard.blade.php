@@ -21,10 +21,10 @@
 <body>
     <header class="c-header__member container">
         <div class="row">
-            <div id="heroBanner" class="c-hero__banner" data-banner="{{asset('media/banner/default-banner.jpg')}}">
+            <div id="member-banner" class="c-hero__banner">
             </div>
             <div class="c-hero__portrait">
-                <div id="portriat" class="c-hero__portrait__img" data-portriat="{{ asset('media/portrait/test-portrait.png') }}"></div>
+                <div id="member-avatar" class="c-hero__portrait__img"></div>
             </div>
         </div>
     </header>
@@ -35,16 +35,12 @@
                 <div class="col-12">
                     <div class="c-edit animate__animated animate__fadeIn">
                         <h1 id="member-name" class="c-edit__title text-center"></h1>
-                        <span class="c-edit__pen"><i class="bi bi-toggle-off text-center"></i></span>
                     </div>
                 </div>
             </div>
         </section>
         <!-- social icon -->
-        <section class="container">
-            <div class="row justify-content-center">
-                <a href="https://google.com" target="_blank" class="col-2 text-center"><i class="bi bi-plus-circle-dotted text-center o-socialBtn"></i></a>
-            </div>
+        <section id="portfolio-social-section" class="container">
         </section>
         <!-- description -->
         <section id="description-section" class="container" data-status="show">
@@ -52,7 +48,6 @@
                 <div class="col-12 p-5 pt-3 pb-0">
                     <div class="c-edit">
                         <h2 class="c-edit__title text-center o-title">自我介紹</h2>
-                        <span class="c-edit__pen"><i class="bi bi-toggle-off text-center"></i></span>
                     </div>
                 </div>
                 <div class="col-12 c-edit__content">
@@ -66,7 +61,6 @@
                 <div class="col-12 p-5 pt-3 pb-0">
                     <div class="c-edit">
                         <h2 class="c-edit__title text-center o-title">聯絡資訊</h2>
-                        <span class="c-edit__pen"><i class="bi bi-toggle-off text-center"></i></span>
                     </div>
                 </div>
                 <div class="col-12 c-edit__content">
@@ -85,19 +79,9 @@
                 </div>
             </div>
         </section>
-
         <!-- company -->
-        <section class="container">
-            <div class="row p-2">
-                <div class="c-edit">
-                    <h2 class="c-edit__title text-center o-title">營運公司</h2>
-                    <span class="c-edit__pen"><i class="bi bi-pencil text-center"></i></span>
-                </div>
-                <div class="col-12 c-content">
-                    <ul id="companies-list"></ul>
-                </div>
-            </div>
-        </section>
+        <div id="companies-section">
+        </div>
     </main>
     <footer>
         <i class="bi bi-gear-fill c-setting" onclick="editMode()"></i>

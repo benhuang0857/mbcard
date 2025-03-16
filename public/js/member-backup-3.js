@@ -8,12 +8,9 @@ const tokenGet = () => {
     return token;
 }
 
-// sheets ---------------------------
-const userSheet = [];
-const seeSheet = () => { console.log(userSheet); };
+// user sheet ---------------------------
+const useSheet =[];
 
-const companiesSheet = [];
-const seeCompaniesSheet = () => { console.log(companiesSheet); };
 
 // Fetch functions ---------------------------
 // fetch me get
@@ -36,8 +33,8 @@ const fetchUserData = async () => {
         }
 
         const data = await response.json();
-        userSheet.length = 0;
-        userSheet.push(data);
+        console.log('user data');
+        console.log(data);
         return data;
     } catch (error) {
         console.error("Error fetching user data:", error);
@@ -78,6 +75,8 @@ const fetchPortfolioData = async () => {
 // fetch company get
 const fetchCompaniesData = async () => {
     try {
+        const user = await fetchUserData();
+        // console.log('user info ' + user.id);
         const token = tokenGet();
         const response = await fetch(`/api/companies/`, {
             method: "GET",
@@ -94,8 +93,7 @@ const fetchCompaniesData = async () => {
         }
 
         const data = await response.json();
-        companiesSheet.length = 0;
-        companiesSheet.push(data);
+        console.log(data);
         return data;
 
     } catch (error) {
@@ -377,20 +375,22 @@ const editTrigger_contact = async () => {
         target.dataset.status = "edit";
     } else if (status === "edit") {
         const token = tokenGet();
-        const newContact = {
-            name: document.getElementById("member-name").textContent,
-            email: document.getElementById("input-email").value,
-            mobile: document.getElementById("input-mobile").value,
-            address: document.getElementById("input-address").value
+        const newContact = new FormData();
+        newContact.append("email", document.getElementById("input-email").value);
+        newContact.append("mobile", document.getElementById("input-mobile").value);
+        newContact.append("address", document.getElementById("input-address").value);
+
+        // Debugging: Check if FormData is populated correctly
+        for (let [key, value] of newContact.entries()) {
+            console.log(`${key}: ${value}`);
         }
 
         fetch("/api/me", {
             method: "POST",
             headers: {
-                'Authorization': `Bearer ${token}`,
-                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify(newContact),
+            body: newContact,
         })
             .then(response => response.json())
             .then(data => {
@@ -483,209 +483,22 @@ const editTrigger_portfolio_social = async () => {
             },
             body: JSON.stringify(newSocial),
         })
-            .then(response => {
-                if (!response.ok) {
-                    return response.text().then(err => { throw new Error(err); }); // Handle errors
-                }
-                return response.json(); // ✅ Ensure JSON is returned for the next .then()
-            })
-            .then(data => {
-                console.log("Server response:", data);
-                target.dataset.status = "show";
-            })
-            .catch(error => {
-                console.error("Error updating portfolio data:", error);
-                alert("Failed to update portfolio data. Please try again.");
-            });
-
-            window.location.reload();
-    }
-};
-
-// company trigger
-const editTrigger_company = async (id) => {
-    const companySheet = userSheet[0].companies.find(company => company.id === id);
-    const target = document.getElementById(`company-${id}-section`);
-    const status = target.dataset.status;
-
-    if (status === "show") {
-        const socialPlatforms = [
-            { key: "facebook", icon: "bi-facebook", color: "o-socialBtn__dark" },
-            { key: "instagram", icon: "bi-instagram", color: "o-socialBtn__gray" },
-            { key: "linkedin", icon: "bi-linkedin", color: "o-socialBtn__gray" },
-            { key: "line", icon: "bi-line", color: "o-socialBtn__gray" }
-        ];
-
-        const socialLinks = socialPlatforms.map(platform => {
-            const companyValue = companySheet[platform.key] || "";
-            return `
-            <div class="row c-edit__contactEdit__string">
-                <i class="col-1 bi ${platform.icon} ${platform.color}"></i>
-                <input value="${companyValue}" id="input-${platform.key}" class="col-10 text-center" type="text" spellcheck="false" data-ms-editor="true">
-            </div>
-            `;
-        }).join('');
-        target.innerHTML = `
-        <form class="row p-2">
-            <div class="col-12 p-5 pt-3 pb-0">
-                <div class="c-edit">
-                    <input id="input-name" class="c-edit__titleEdit text-center o-title border border-dark" value="${companySheet.name}">
-                    <span class="c-edit__penEdit" onclick="editTrigger_company(${id})"><i class="bi bi-pencil text-center"></i></span>
-                </div>
-            </div>
-            <div class="col-12 c-edit__contentEdit">
-                <textarea id="input-company-description" class="c-edit__contentEdit__text">${companySheet.description}</textarea>
-                <hr>
-                <div class="container c-edit__contactEdit">
-                ${socialLinks}
-                </div>
-            </div>
-        </form>
-        `;
-        target.dataset.status = "edit";
-    } else if (status === "edit") {
-        const OldCompany = document.getElementById(`companies-section`);
-        const token = tokenGet();
-        const updateCompany = {
-            id: companySheet.id,
-            uid: companySheet.uid,
-            name: document.getElementById("input-name").value,
-            description: document.getElementById("input-company-description").value,
-            facebook: document.getElementById("input-facebook").value.trim(),
-            instagram: document.getElementById("input-instagram").value.trim(),
-            linkedin: document.getElementById("input-linkedin").value.trim(),
-            line: document.getElementById("input-line").value.trim()
-        };
-        console.log(updateCompany);
-        fetch(`/api/companies/${companySheet.id}/`, {
-            method: "PUT",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(updateCompany)
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(err => { throw new Error(err); }); // Handle errors
+            }
+            return response.json(); // ✅ Ensure JSON is returned for the next .then()
         })
-            .then(response => response.json())
-            .then(() => {
-                OldCompany.innerHTML = ``;
-                fetchUserData().then(data => {
-                    displayCompanies(data);
-                });
-            })
-    }
-};
-
-// add company trigger
-const editTrigger_add_company = async () => {
-    fetchCompaniesData();
-    const target = document.getElementById("add-company-section");
-    const status = target.dataset.status;
-
-    if (status === "show") {
-        const socialPlatforms = [
-            { key: "facebook", icon: "bi-facebook", color: "o-socialBtn__dark" },
-            { key: "instagram", icon: "bi-instagram", color: "o-socialBtn__gray" },
-            { key: "linkedin", icon: "bi-linkedin", color: "o-socialBtn__gray" },
-            { key: "line", icon: "bi-line", color: "o-socialBtn__gray" }
-        ];
-
-        const socialLinks = socialPlatforms.map(platform => {
-            return `
-            <div class="row c-edit__contactEdit__string">
-                <i class="col-1 bi ${platform.icon} ${platform.color}"></i>
-                <input id="input-${platform.key}" class="col-10 text-center" type="text" spellcheck="false" data-ms-editor="true">
-            </div>
-            `;
-        }).join('');
-        target.innerHTML = `
-        <form class="row p-2">
-            <div class="col-12 p-5 pt-3 pb-0">
-                <div class="c-edit">
-                    <input id="input-name" class="c-edit__titleEdit text-center o-title border border-dark">
-                    <span class="c-edit__penEdit" onclick="editTrigger_add_company()"><i class="bi bi-pencil text-center"></i></span>
-                </div>
-            </div>
-            <div class="col-12 c-edit__contentEdit">
-                <textarea id="input-company-description" class="c-edit__contentEdit__text"></textarea>
-                <hr>
-                <div class="container c-edit__contactEdit">
-                ${socialLinks}
-                </div>
-            </div>
-        </form>
-        `;
-        target.dataset.status = "edit";
-    } else if (status === "edit") {
-        const userUid = userSheet[0].id;
-        const OldCompany = document.getElementById(`companies-section`);
-        const addCompany = {
-            uid: `${userUid}`,
-            name: document.getElementById("input-name").value,
-            status: 1,
-            description: document.getElementById("input-company-description").value,
-            facebook: document.getElementById("input-facebook").value,
-            instagram: document.getElementById("input-instagram").value,
-            linkedin: document.getElementById("input-linkedin").value,
-            line: document.getElementById("input-line").value
-        };
-        console.log(addCompany);
-        fetch(`/api/companies`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(addCompany)
+        .then(data => {
+            console.log("Server response:", data);
+            alert("Social links updated successfully!");
+            target.dataset.status = "show";
         })
-            .then(response => response.text())
-        OldCompany.innerHTML = ``;
-        initMember();
+        .catch(error => {
+            console.error("Error updating portfolio data:", error);
+            alert("Failed to update portfolio data. Please try again.");
+        });
     }
-};
-
-// bg color trigger
-const editTrigger_bgColor = async () => {
-    const oldColor = userSheet[0].portfolio.bg_color;
-    const main = document.querySelector('main');
-    const token = tokenGet();
-    const target = document.getElementById('bgColor-button');
-    const status = target.dataset.status;
-    if (status === "hide") {
-        main.innerHTML += `
-            <section id="bgColor-popup" class="container c-bg" data-status="hide">
-                <form class="row p-2 animate__animated animate__slideInUp">
-                    <div class="col-12 p-5 pt-3 pb-0">
-                        <div class="c-edit">
-                            <h2 class="c-edit__titleEdit text-center o-title">更新背景顏色</h2>
-                            <span class="c-edit__penEdit" onclick="editTrigger_bgColor()"><i class="bi bi-pencil text-center"></i></span>
-                        </div>
-                    </div>
-                    <div class="col-12 c-edit__contentEdit pt-5 p-3 d-flex justify-content-center">
-                        <input type="color" id="input-bgColor" class="col" value="${oldColor}">
-                    </div>
-                </form>
-            </section>
-            `;
-        target.dataset.status = 'edit';
-    } else if (status === 'edit') {
-        const popup = document.getElementById('bgColor-popup');
-        const token = tokenGet();
-        const userId = userSheet[0].id;
-        const newColor = {
-            bg_color: document.getElementById('input-bgColor').value
-        };
-        console.log(newColor);
-        fetch(`/api/portfolios/${userId}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newColor),
-        })
-        const body = document.querySelector('body');
-        body.style.backgroundColor = document.getElementById('input-bgColor').value;
-        popup.remove();
-    }
-
 };
 
 // Display functions ---------------------------
@@ -811,14 +624,6 @@ const displayCompanies = async (data) => {
         singleCompany.appendChild(rowDiv);
         companySection.appendChild(singleCompany);
     });
-    companySection.innerHTML += `
-    <section id="add-company-section" class="container" data-status="show">
-        <div class="p-3 w-100 d-flex flex-column align-items-center justify-content-center">
-            <h2 class="o-title text-center w-75">新增店家</h2>
-            <i id="new-company" class="bi bi-plus-circle-dotted text-center o-addCompanyBtn" onclick="editTrigger_add_company()" ></i>
-        </div>
-    </section>
-    `;
 };
 
 // Initialization functions ---------------------------
@@ -828,17 +633,6 @@ const initMember = () => {
         displayCompanies(data);
     });
     fetchPortfolioData().then(displayPortfolio);
-};
-
-// logout function ---------------------------
-const viewMode = () => {
-    localStorage.removeItem("token");
-    const userAccount = userSheet[0].account;
-    fetch("/api/logout", {
-        method: "POST",
-    }).then(() => {
-        window.location.href = "/member/" + userAccount;
-    });
 };
 
 // Call initialization functions ---------------------------

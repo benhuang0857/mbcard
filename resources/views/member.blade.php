@@ -22,7 +22,7 @@
     <header class="c-header__member container">
         <div class="row">
             <div id="member-banner" class="col-12 c-hero__banner">
-                <span id="avatar-button" class="c-edit__smallPen"  onclick="editTrigger_avatar()" data-status="hide"><i class="bi bi-pencil text-center"></i></span>
+                <span id="img-button" class="c-edit__smallPen" onclick="editTrigger_img()" data-status="hide"><i class="bi bi-pencil text-center"></i></span>
             </div>
             <div class="col-12 c-hero__portrait">
                 <div id="member-avatar" class="c-hero__portrait__img"></div>
@@ -36,21 +36,21 @@
                 <div class="col-12">
                     <div class="c-edit animate__animated animate__fadeIn">
                         <h1 id="member-name" class="c-edit__title text-center"></h1>
-                        <span class="c-edit__pen" onclick="editTrigger('name')"><i class="bi bi-pencil text-center"></i></span>
+                        <span class="c-edit__pen" onclick="editTrigger_name()"><i class="bi bi-pencil text-center"></i></span>
                     </div>
                 </div>
             </div>
         </section>
         <!-- social icon -->
-        <section id="portfolio-social-section" class="container">
+        <section id="portfolio-social-section" class="container" data-status="show">
         </section>
         <!-- description -->
-        <section id="description-section" class="container" data-status="show">
+        <section id="intro-section" class="container" data-status="show">
             <div class="row p-2">
                 <div class="col-12 p-5 pt-3 pb-0">
                     <div class="c-edit">
                         <h2 class="c-edit__title text-center o-title">自我介紹</h2>
-                        <span class="c-edit__pen" onclick="editTrigger_text('description')"><i class="bi bi-pencil text-center"></i></span>
+                        <span class="c-edit__pen" onclick="editTrigger_intro()"><i class="bi bi-pencil text-center"></i></span>
                     </div>
                 </div>
                 <div class="col-12 c-edit__content">
@@ -85,32 +85,13 @@
         </section>
 
         <!-- company -->
-        <div id="companies-list">
-            <section id="company-1-section" class="container">
-                <div class="row p-2">
-                    <div class="col-12 p-5 pt-3 pb-0">
-                        <div class="c-edit">
-                            <h2 class="c-edit__title text-center o-title">營運公司(name)</h2>
-                            <span class="c-edit__pen"><i class="bi bi-pencil text-center"></i></span>
-                        </div>
-                    </div>
-                    <div class="col-12 c-edit__content">
-                        <p class="c-edit__content__text"></p>
-                        <hr>
-                        <div class="row justify-content-center">
-                            <div class="col-2 text-center">
-                                <i class="bi bi-facebook o-socialBtn"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <div id="companies-section">
         </div>
     </main>
     <footer>
         <div class="d-flex flex-column c-setting">
             <i id="bgColor-button" class="bi bi-palette" onclick="editTrigger_bgColor()" data-status="hide"></i>
-            <i class="bi bi-gear-fill" onclick="editFin()"></i>
+            <i class="bi bi-gear-fill" onclick="viewMode()"></i>
         </div>
     </footer>
     <script src="{{ asset('js/member.js') }}"></script>
