@@ -28,37 +28,44 @@ class MemberController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Member());
-    
-        $grid->column('id', __('Id'));
-        $grid->column('name', __('Name'));
-        $grid->column('account', __('Account'));
-    
+
+        $grid->column('id', '編號');
+        $grid->column('name', '姓名');
+        $grid->column('account', '帳號');
+
         // 顯示 Role 名稱，而不是 role_id
-        $grid->column('role_id', __('Role'))->display(function ($roleId) {
-            return Role::find($roleId)->name ?? 'Unknown';
+        $grid->column('role_id', '角色')->display(function ($roleId) {
+            return Role::find($roleId)->name ?? '未知';
         });
-    
-        $grid->column('mobile', __('Mobile'));
-        $grid->column('email', __('Email'));
-    
-        $grid->column('avatar', __('Avatar'));
-        $grid->column('banner', __('Banner'));
-        $grid->column('birth_day', __('Birth day'));
-        $grid->column('address', __('Address'));
-        $grid->column('description', __('Description'));
-    
+
+        $grid->column('mobile', '手機號碼');
+        $grid->column('email', '電子郵件');
+
+        // Avatar 顯示圖片（加大為 100x100）
+        $grid->column('avatar', '頭像')->image('/storage/', 100, 100);
+
+        // Banner 顯示圖片（加大為 200x100）
+        $grid->column('banner', '橫幅圖片')->image('/storage/', 200, 100);
+
+        $grid->column('birth_day', '生日');
+        $grid->column('address', '地址');
+
+        // Description 長文字換行
+        $grid->column('description', '描述')->display(function ($text) {
+            $maxLength = 100; // 最多顯示 100 個字
+            return "<div style='white-space: normal; word-break: break-word; max-width: 400px;'>
+                        " . (mb_strlen($text) > $maxLength ? mb_substr($text, 0, $maxLength) . '...' : $text) . "
+                    </div>";
+        })->style('max-width: 400px; white-space: normal; word-wrap: break-word;');
+        
+
         // 顯示 status 為 true/false
-        $grid->column('status', __('Status'))->display(function ($status) {
-            return $status ? 'true' : 'false';
+        $grid->column('status', '狀態')->display(function ($status) {
+            return $status ? '啟用' : '停用';
         });
-    
-        $grid->column('remember_token', __('Remember token'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
-    
+
         return $grid;
     }
-    
 
     /**
      * Make a show builder.
