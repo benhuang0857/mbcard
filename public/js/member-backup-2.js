@@ -211,7 +211,7 @@ const editTrigger_img = async () => {
         const formData = new FormData();
         const avatarFile = document.getElementById('input-avatar').files[0];
         const bannerFile = document.getElementById('input-banner').files[0];
-        console.log('bannef' + bannerFile);
+        console.log('bannef' + JSON.stringify(bannerFile));
 
         if (bannerFile) {
             formData.append("banner", bannerFile);

@@ -59,6 +59,7 @@
 
     &__pen {
         width: 20%;
+        max-width: var(--spacing-32);
         border: var(--spacing-2) solid white;
         padding: var(--spacing-8);
         border-radius: 50%;
@@ -114,6 +115,7 @@
 
     &__penEdit {
         width: 20%;
+        max-width: var(--spacing-32);
         border: var(--spacing-2) solid $main-dark;
         padding: var(--spacing-8);
         border-radius: 50%;

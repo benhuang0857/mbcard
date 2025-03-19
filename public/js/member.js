@@ -116,7 +116,7 @@ const editTrigger_name = async () => {
             <div class="col-12">
                 <div class="c-edit">
                     <input id="input-name" class="c-edit__titleEdit text-center" type="text" placeholder="Enter new value">
-                    <span class="c-edit__penEdit" onclick="editTrigger_name()"><i class="bi bi-pencil"></i></span>
+                    <span class="c-edit__penEdit" onclick="editTrigger_name()"><i class="bi bi-check-circle"></i></span>
                 </div>
             </div>
         </form>
@@ -207,7 +207,7 @@ const editTrigger_img = async () => {
         const formData = new FormData();
         const avatarFile = document.getElementById('input-avatar').files[0];
         const bannerFile = document.getElementById('input-banner').files[0];
-        console.log('bannef' + bannerFile);
+        const name = document.getElementById('member-name').textContent;
 
         if (bannerFile) {
             formData.append("banner", bannerFile);
@@ -217,6 +217,8 @@ const editTrigger_img = async () => {
             formData.append("avatar", avatarFile);
             console.log('formdata' + formData);
         }
+
+        formData.append("name", name);
 
         // Uncomment and modify the fetch request for real API call
         fetch("/api/me", {
@@ -248,6 +250,7 @@ const editTrigger_img = async () => {
             .then(data => {
                 console.log("Server response:", data);
                 alert("Files uploaded successfully!");
+                window.location.reload();
             })
             .catch(error => {
                 console.error("Error updating user data:", error);
@@ -269,7 +272,7 @@ const editTrigger_intro = async () => {
                 <div class="col-12 p-5 pt-3 pb-0">
                     <div class="c-edit">
                         <h2 class="c-edit__titleEdit text-center o-title">自我介紹</h2>
-                        <span class="c-edit__penEdit"  onclick="editTrigger_intro()"><i class="bi bi-pencil text-center"></i></span>
+                        <span class="c-edit__penEdit"  onclick="editTrigger_intro()"><i class="bi bi-check-circle text-center"></i></span>
                     </div>
                 </div>
                 <div class="col-12 c-edit__contentEdit">
@@ -350,7 +353,7 @@ const editTrigger_contact = async () => {
                 <div class="col-12 p-5 pt-3 pb-0">
                     <div class="c-edit">
                         <h2 class="c-edit__titleEdit text-center o-title">聯絡資訊</h2>
-                        <span class="c-edit__penEdit" onclick="editTrigger_contact()"><i class="bi bi-pencil text-center"></i></span>
+                        <span class="c-edit__penEdit" onclick="editTrigger_contact()"><i class="bi bi-check-circle text-center"></i></span>
                     </div>
                 </div>
                 <div class="col-12 c-edit__contactEdit">
@@ -453,7 +456,7 @@ const editTrigger_portfolio_social = async () => {
             <div class="col-12 p-5 pt-3 pb-0">
                 <div class="c-edit">
                     <h2 class="c-edit__titleEdit text-center o-title">social</h2>
-                    <span class="c-edit__penEdit" onclick="editTrigger_portfolio_social()"><i class="bi bi-pencil text-center"></i></span>
+                    <span class="c-edit__penEdit" onclick="editTrigger_portfolio_social()"><i class="bi bi-check-circle text-center"></i></span>
                 </div>
             </div>
             <div class="col-12 c-edit__contactEdit">
@@ -530,7 +533,7 @@ const editTrigger_company = async (id) => {
             <div class="col-12 p-5 pt-3 pb-0">
                 <div class="c-edit">
                     <input id="input-name" class="c-edit__titleEdit text-center o-title border border-dark" value="${companySheet.name}">
-                    <span class="c-edit__penEdit" onclick="editTrigger_company(${id})"><i class="bi bi-pencil text-center"></i></span>
+                    <span class="c-edit__penEdit" onclick="editTrigger_company(${id})"><i class="bi bi-check-circle text-center"></i></span>
                 </div>
             </div>
             <div class="col-12 c-edit__contentEdit">
@@ -539,6 +542,7 @@ const editTrigger_company = async (id) => {
                 <div class="container c-edit__contactEdit">
                 ${socialLinks}
                 </div>
+                <div class="d-flex justify-content-center"><span class="c-edit__penEdit" onclick="editTriger_delete_company(${id})"><i class="bi bi-trash text-center"></i></span></div>
             </div>
         </form>
         `;
@@ -602,7 +606,7 @@ const editTrigger_add_company = async () => {
             <div class="col-12 p-5 pt-3 pb-0">
                 <div class="c-edit">
                     <input id="input-name" class="c-edit__titleEdit text-center o-title border border-dark">
-                    <span class="c-edit__penEdit" onclick="editTrigger_add_company()"><i class="bi bi-pencil text-center"></i></span>
+                    <span class="c-edit__penEdit" onclick="editTrigger_add_company()"><i class="bi bi-check-circle text-center"></i></span>
                 </div>
             </div>
             <div class="col-12 c-edit__contentEdit">
@@ -642,6 +646,23 @@ const editTrigger_add_company = async () => {
     }
 };
 
+// delete company trigger
+const editTriger_delete_company = async (id) => {
+    const fetch_route = '/api/companies/' + id;
+    const companySection = document.getElementById("companies-section");
+    fetch(fetch_route, {
+        method: "DELETE"
+    })
+    .then(console.log('deleted'))
+    .then(companySection.innerHTML="")
+    .then(()=>{
+        fetchUserData().then(data => {
+            displayMember(data);
+            displayCompanies(data);
+        });
+    })
+};
+
 // bg color trigger
 const editTrigger_bgColor = async () => {
     const oldColor = userSheet[0].portfolio.bg_color;
@@ -656,7 +677,7 @@ const editTrigger_bgColor = async () => {
                     <div class="col-12 p-5 pt-3 pb-0">
                         <div class="c-edit">
                             <h2 class="c-edit__titleEdit text-center o-title">更新背景顏色</h2>
-                            <span class="c-edit__penEdit" onclick="editTrigger_bgColor()"><i class="bi bi-pencil text-center"></i></span>
+                            <span class="c-edit__penEdit" onclick="editTrigger_bgColor()"><i class="bi bi-check-circle text-center"></i></span>
                         </div>
                     </div>
                     <div class="col-12 c-edit__contentEdit pt-5 p-3 d-flex justify-content-center">
