@@ -1,0 +1,108 @@
+@use "_variables" as *;
+
+// login obs
+
+.o-icon {
+    &__large {
+        font-size: var(--spacing-64);
+    }
+}
+
+.o-input {
+    &__main {
+        padding: var(--spacing-4);
+        border-radius: var(--spacing-8);
+        letter-spacing: var(--spacing-2);
+    }
+}
+
+.o-inputSubmit {
+    border: solid 0.1rem $main-white;
+    overflow: hidden;
+    border-radius: var(--spacing-8);
+
+    &__input {
+        border: none;
+        padding: var(--spacing-4);
+        letter-spacing: var(--spacing-2);
+    }
+
+    &__btn {
+        border: none;
+        padding: var(--spacing-4);
+        letter-spacing: var(--spacing-2);
+        background-color: black;
+    }
+}
+
+.o-btn {
+    &__submit {
+        background-color: $main-dark;
+        border: var(--spacing-2) solid $main-white;
+        border-radius: var(--spacing-8);
+        color: $main-white;
+        font-size: var(--text-sm);
+    }
+
+    &__security-submit {
+        background-color: black;
+        border: 0.1rem solid $main-white;
+        border-radius: var(--spacing-4);
+        color: $main-white;
+        font-size: var(--text-xs);
+    }
+}
+
+.o-text {
+    &__notice {
+        color: $main-white;
+    }
+
+    &__alert {
+        color: $main-topic;
+    }
+}
+
+.o-form-label {
+    &__main {
+        font-weight: 300;
+        border: $main-gray 0.1rem solid;
+        padding: var(--spacing-4);
+        border-radius: var(--spacing-8);
+        letter-spacing: var(--spacing-2);
+        background-color: black;
+    }
+}
+
+// member obs
+
+.o-socialBtn {
+    font-size: var(--text-xl);
+    &__dark{
+        color: $main-dark;
+    }
+    &__gray{
+        color: $main-gray;
+    }
+}
+
+.o-addCompanyBtn{
+    font-size: var(--text-3xl);
+}
+
+.o-title {
+    padding: var(--spacing-2) 0;
+    background-color: $main-dark;
+    border: var(--spacing-2) solid $main-white;
+    border-radius: var(--spacing-4);
+    color: $main-white;
+    font-size: var(--text-sm);
+    z-index: 2;
+}
+
+.o-return{
+  position: absolute;
+  left: var(--spacing-4);
+  top: var(--spacing-4);  
+  font-size: var(--text-xl);
+}
